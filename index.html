@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Exemplo de jogo de letras</title>
+    <!-- Link para o Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col text-center">
+                <h4 class="text-center">Tema</h4>
+                <h3 id="categoria" class="text-center"></h3>
+            </div>
+            <div class="col text-center">
+                <button id="start-button" class="btn btn-outline-primary p-4">Iniciar</button>
+            </div>
+            <div class="col">
+                <h4 class="text-center">Tempo</h4>
+                <h3 class="text-center" id="timer">10</h3>
+            </div>
+        </div>
+        <div class="row mt-3 px-4">
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">A</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">B</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">C</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">D</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">E</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">F</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">G</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">H</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">I</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">J</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">K</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">L</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">M</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">N</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">O</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">P</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">Q</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">R</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">S</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">T</button>
+          </div>
+          <div class="col-2 py-1">
+            <button type="button" class="py-3 btn letter-button btn-primary btn-block">U</button>
+          </div>
+            <div class="col-2 py-1">
+              <button type="button" class="py-3 btn letter-button btn-primary btn-block">V</button>
+            </div>
+            <div class="col-2 py-1">
+              <button type="button" class="py-3 btn letter-button btn-primary btn-block">W</button>
+            </div>
+            <div class="col-2 py-1">
+              <button type="button" class="py-3 btn letter-button btn-primary btn-block">X</button>
+            </div>
+            <div class="col-2 py-1">
+              <button type="button" class="py-3 btn letter-button btn-primary btn-block">Y</button>
+            </div>
+            <div class="col-2 py-1">
+              <button type="button" class="py-3 btn letter-button btn-primary btn-block">Z</button>
+            </div>
+          </div>
+        </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let timer;
+
+            const categorias = ['Cores', 'Frutas', 'Países', 'Animais', 'Carros', 'Comidas', 'Esportes', 'Filmes', 'Livros', 'Profissões'];
+            let randomIndex = Math.floor(Math.random() * categorias.length);
+            $('#categoria').text(categorias[randomIndex]);
+
+            function updateTimer() {
+                let currentValue = parseInt($("#timer").text());
+                let newValue = currentValue - 1;
+                $("#timer").text(newValue);
+                if (newValue == 0) {
+                    clearInterval(timer);
+                    alert('Tempo esgotado!');
+                    $("#start-button").text("Reiniciar");
+                }
+            }
+            $("#start-button").click(function () {
+              if ($("#start-button").text() == "Iniciar") {
+                $("#start-button").text("Próximo");
+                $("#timer").text("10");
+                timer = setInterval(updateTimer, 1000);
+              }
+              if ($("#start-button").text() == "Próximo") {
+                $("#timer").text("10");
+                clearInterval(timer);
+                timer = setInterval(updateTimer, 1000);
+              }
+              if ($("#start-button").text() == "Reiniciar") {
+                  $("#start-button").text("Iniciar");
+                  $(".letter-button").attr("disabled", false);    
+                  $("#timer").text("10");
+                  clearInterval(timer);
+                  let randomIndex = Math.floor(Math.random() * categorias.length);
+                  $('#categoria').text(categorias[randomIndex]);
+              }
+
+            });
+
+            $(".letter-button").click(function () {
+                $(this).attr("disabled", true);
+            });
+        });
+    </script>
+</body>
+
+</html>
